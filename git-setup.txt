@@ -1,0 +1,58 @@
+1. 安裝 Visual Studio Code
+
+https://code.visualstudio.com/
+
+
+2. 安裝 Git
+
+https://git-for-windows.github.io/
+
+
+3. 設置 Git
+https://www.slideshare.net/shengyou/visual-studio-code-62532711
+
+git config --global user.name "yourname"
+git config --global user.email "your@email.com"
+
+
+4. 初始化存放庫 (git init)
+
+1) 先用 VS Code 開啟專案資料夾
+2) 切換到 git 側邊欄
+3) 點選初始化存放庫
+
+
+5. 將檔案放入 Stage 區 (暫存變更) (git add .)
+
+1) 按 CHANGES 旁邊的加號 "+" (暫存所有變更)，可將所有未追蹤的一次加入 Stage 區
+2) 也可以針對單一檔案按旁邊的加號 "+" 來加入 Stage 區 (暫存變更)
+3) 暫存變更後，可以按 (STAGED CHANGES 或個別檔案旁邊) 減號 "-" 取消暫存變更
+
+
+6. 提交版本 git commit -m
+
+1) 確認加入 Stage 區的檔案內容
+2) 輸入提交訊息
+3) 按下打勾按鈕確認提交 (快速鍵 ctrl + Enter) $	 
+
+
+7. git diff
+
+
+8. git status
+
+
+9. git checkout
+
+
+10. 推送至 GitHub (將現有本地 Git 儲存庫上傳到指定「沒有版本」的 GitHub 專案)
+http://ithelp.ithome.com.tw/articles/10139849
+
+1) 在 GitHub 建立一個「沒有版本」的空白 Git 儲存庫
+ Initialize this repository with a README 不要勾選，還有 Add .gitignore 與 Add a licenes 都保留預設的 None 選項
+ 
+2) 將現有的本地 Git 儲存庫上傳到指定的 GitHub 專案
+在整合式終端機執行：
+git remote add origin https://github.com/username/repositoryname.git
+
+3) 在 git 窗格選 "推送"，將現有本地 Git 儲存庫上傳到 GitHub 專案

@@ -1,0 +1,9 @@
+{
+    "books/:page": {
+        "controller": "Book",
+        "method": "getAllWithPage",
+        "params": {
+            "page": "number"
+        }
+    }
+}
