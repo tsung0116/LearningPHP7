@@ -68,8 +68,8 @@ function addSale(int $userId, array $bookIds): void
 }
 
 $dbConfig = Config::getInstance()->get('db');
-$dsn = sprintf("mysql:host=%s;port=%s;dbname=%s;charset=%s",
-        $dbConfig['host'],$dbConfig['port'],$dbConfig['dbname'], $dbConfig['charset']);
+$dsn = sprintf("mysql:host=%s; port=%s; dbname=%s; charset=%s",
+    $dbConfig['host'], $dbConfig['port'], $dbConfig['dbname'], $dbConfig['charset']);
 //echo $dsn;        
 $db = new PDO(
     $dsn,
