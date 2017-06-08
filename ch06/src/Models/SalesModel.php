@@ -7,13 +7,13 @@ use Bookstore\Exceptions\DbException;
 use PDO;
 
 
-class SaleModel extends AbstractModel 
+class SalesModel extends AbstractModel 
 {
     const CLASSNAME = '\Bookstore\Domain\Sale';
 
     public function getByUser(int $userId): array 
     {
-        $query = 'SELECT * FROM sale WHERE s.customer_id = :user';
+        $query = 'SELECT * FROM sale WHERE customer_id = :user';
         $sth = $this->db->prepare($query);
         $sth->execute(['user' => $userId]);
         return $sth->fetchAll(PDO::FETCH_CLASS, self::CLASSNAME);
