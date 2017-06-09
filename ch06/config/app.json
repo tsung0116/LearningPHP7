@@ -6,5 +6,6 @@
         "charset": "utf8",
         "user": "root",
         "password": "mydb"
-    }
+    },
+    "log": "D:/Learning PHP 7/log/bookstore.log"            
 }

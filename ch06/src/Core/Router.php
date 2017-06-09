@@ -23,11 +23,11 @@ class Router
         foreach ($this->routeMap as $route => $info) {
             // if $route = 'books/:page', 
             // $info = ["controller" => "Book", "method" => "getAllWithPage", "params" => ["page" => "number"]]
-            // we have $regexRoute = books/\d+
+            // we have $regexRoute = books/\d+            
             $regexRoute = $this->getRegexRoute($route, $info);
-            // preg_match("@^/$regexRoute$@", $path) ???, we don't need the slash
-            if (preg_match("@^$regexRoute$@", $path)) {
-                return $this->executeController($route, $path, $info, $request);
+            // preg_match("@^/$regexRoute$@", $path) ???, we don't need the slash ?? -->/login
+            if (preg_match("@^/$regexRoute$@", $path)) {                
+                return $this->executeController($route, $path, $info, $request);                
             }
         }
         $errorController = new ErrorController($request);
@@ -78,10 +78,10 @@ class Router
                 $errorController = new CustomerController($request);
                 return $errorController->login();
             }
-        }
+        }        
         $params = $this->extractParams($route, $path);
         // given an object, a method name, and the arguments for the method, 
-        // invokes the method of the object passing the arguments.
+        // invokes the method of the object passing the arguments.       
         return call_user_func_array([$controller, $info['method']], $params);
     }
 }
