@@ -6,13 +6,15 @@ use Bookstore\Controllers\{ErrorController, CustomerController};
 
 class Router 
 {
+    private $di;
     private $routeMap;
     private static $regexPatters = ['number' => '\d+', 'string' => '\w'];
 
     // routeMap = ["books/:page" => ["controller" => "Book", "method" => "getAllWithPage", 
     // "params" => ["page" => "number"]], "books" => [...], ...]
-    public function __construct() 
+    public function __construct(DependencyInjector $di) 
     {
+        $this->di = $di;
         $json = file_get_contents(__DIR__ . '/../../config/routes.json');
         $this->routeMap = json_decode($json, true);
     }
@@ -30,7 +32,8 @@ class Router
                 return $this->executeController($route, $path, $info, $request);                
             }
         }
-        $errorController = new ErrorController($request);
+        
+        $errorController = new ErrorController($this->di, $request);        
         return $errorController->notFound();
     }
     
@@ -69,13 +72,13 @@ class Router
     {
         $controllerName = '\Bookstore\Controllers\\' 
             . $info['controller'] . 'Controller';
-        $controller = new $controllerName($request);
+        $controller = new $controllerName($this->di, $request);        
         if (isset($info['login']) && $info['login']) {
             if ($request->getCookies()->has('user')) {
                 $customerId = $request->getCookies()->get('user');
                 $controller->setCustomerId($customerId);
             } else {
-                $errorController = new CustomerController($request);
+                $errorController = new CustomerController($this->di, $request);                
                 return $errorController->login();
             }
         }        
