@@ -1,0 +1,11 @@
+{
+    "db": {
+        "host": "127.0.0.1",
+        "port": "3306",
+        "dbname": "bookstore",
+        "charset": "utf8",
+        "user": "root",
+        "password": "mydb"
+    },
+    "log": "D:/Learning PHP 7/log/bookstore.log"            
+}
