@@ -28,7 +28,7 @@ class Basic extends Person implements Customer, Payer
         echo "Paying $amount." . PHP_EOL;
     }
 
-    public function isExtentOfTaxes(): bool 
+    public function isExemptOfTaxes(): bool 
     {
         return false;
     }
