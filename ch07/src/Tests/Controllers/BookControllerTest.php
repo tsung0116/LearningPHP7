@@ -4,7 +4,8 @@ namespace Bookstore\Tests\Controllers;
 
 use Bookstore\Controllers\BookController;
 use Bookstore\Core\Request;
-use Bookstore\Exceptions\NotFoundException;
+use Bookstore\Domain\Book;
+use Bookstore\Exceptions\{NotFoundException, DbException};
 use Bookstore\Models\BookModel;
 use Bookstore\Tests\ControllerTestCase;
 use Twig_Template;
@@ -23,12 +24,12 @@ class BookControllerTest extends ControllerTestCase
     
     public function testBookNotFound() 
     {
-        $bookModel = $this->mock(BookModel::class);
+        $bookModel = $this->mock(BookModel::class);        
         $bookModel
             ->expects($this->once())
             ->method('get')
             ->with(123)
-            ->will($this->throwException(new NotFoundException()));
+            ->will($this->throwException(new NotFoundException));            
         $this->di->set('BookModel', $bookModel);
         
         $response = "Rendered template";

@@ -11,7 +11,8 @@ class BookController extends AbstractController
     public function getAllWithPage($page): string 
     {
         $page = (int)$page;
-        $bookModel = new BookModel($this->db);
+        // $bookModel = new BookModel($this->db);
+        $bookModel = $this->di->get('BookModel');
         $books = $bookModel->getAll($page, self::PAGE_LENGTH);
         $properties = ['books' => $books, 'currentPage' => $page, 'lastPage' => count($books) < self::PAGE_LENGTH];
         return $this->render('books.twig', $properties);
@@ -24,8 +25,8 @@ class BookController extends AbstractController
 
     public function get(int $bookId): string 
     {
-        $bookModel = new BookModel($this->db);
-        
+        //$bookModel = new BookModel($this->db);
+        $bookModel = $this->di->get('BookModel');
         try {
             $book = $bookModel->get($bookId);
         } catch (\Exception $e) {
@@ -40,7 +41,8 @@ class BookController extends AbstractController
 
     public function getByUser(): string 
     {
-        $bookModel = new BookModel($this->db);
+        //$bookModel = new BookModel($this->db);
+        $bookModel = $this->di->get('BookModel');
         $books = $bookModel->getByUser($this->customerId);
         $properties = ['books' => $books, 'currentPage' => 1, 'lastPage' => true];
         return $this->render('books.twig', $properties);
@@ -50,7 +52,8 @@ class BookController extends AbstractController
     {
         $title = $this->request->getParams()->getString('title');
         $author = $this->request->getParams()->getString('author');
-        $bookModel = new BookModel($this->db);
+        //$bookModel = new BookModel($this->db);
+        $bookModel = $this->di->get('BookModel');
         $books = $bookModel->search($title, $author);
         $properties = ['books' => $books, 'currentPage' => 1, 'lastPage' => true];
         return $this->render('books.twig', $properties);
@@ -58,7 +61,8 @@ class BookController extends AbstractController
 
     public function borrow(int $bookId): string 
     {
-        $bookModel = new BookModel($this->db);
+        //$bookModel = new BookModel($this->db);
+        $bookModel = $this->di->get('BookModel');
         
         try {
             $book = $bookModel->get($bookId);
@@ -86,7 +90,8 @@ class BookController extends AbstractController
     
     public function returnBook(int $bookId): string 
     {
-        $bookModel = new BookModel($this->db);
+        //$bookModel = new BookModel($this->db);
+        $bookModel = $this->di->get('BookModel');
         
         try {
             $book = $bookModel->get($bookId);

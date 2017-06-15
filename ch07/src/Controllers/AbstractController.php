@@ -30,7 +30,9 @@ abstract class AbstractController
         $this->log = $di->get('Logger');
         $this->view = $di->get('Twig_Environment');
         $this->config = $di->get('Utils\Config');        
-        $this->customerId = $_COOKIE['user'];
+        if(isset($_SESSION)){
+            $this->customerId = $_COOKIE['user'];
+        }
     }
 
     public function setCustomerId(int $customerId) 
