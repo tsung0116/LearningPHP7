@@ -29,7 +29,7 @@ class BookController extends AbstractController
         $bookModel = $this->di->get('BookModel');
         try {
             $book = $bookModel->get($bookId);
-        } catch (\Exception $e) {
+        } catch (\Exception $e) {            
             $this->log->error('Error getting book: ' . $e->getMessage());
             $properties = ['errorMessage' => 'Book not found!'];
             return $this->render('error.twig', $properties);
@@ -68,7 +68,7 @@ class BookController extends AbstractController
             $book = $bookModel->get($bookId);
         } catch (NotFoundException $e) {
             $this->log->warn('Book not found: ' . $bookId);
-            $params = ['errorMessage' => 'Book not found.'];
+            $params = ['errorMessage' => 'Book not found!'];
             return $this->render('error.twig', $params);
         }
 
@@ -97,7 +97,7 @@ class BookController extends AbstractController
             $book = $bookModel->get($bookId);
         } catch (NotFoundException $e) {
             $this->log->warn('Book not found: ' . $bookId);
-            $params = ['errorMessage' => 'Book not found.'];
+            $params = ['errorMessage' => 'Book not found!'];
             return $this->render('error.twig', $params);
         }
 

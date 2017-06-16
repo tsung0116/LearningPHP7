@@ -9,6 +9,7 @@ use Bookstore\Exceptions\{NotFoundException, DbException};
 use Bookstore\Models\BookModel;
 use Bookstore\Tests\ControllerTestCase;
 use Twig_Template;
+use Twig_Loader_Filesystem;
 
 require_once __DIR__ . '/../../../vendor/autoload.php';
 
@@ -30,14 +31,21 @@ class BookControllerTest extends ControllerTestCase
             ->method('get')
             ->with(123)
             ->will($this->throwException(new NotFoundException));            
+        
         $this->di->set('BookModel', $bookModel);
         
+        $this->expectException(NotFoundException::class);
+
+        //to be continued.
+        //$loader = $this->mock(Twig_Loader_Filesystem::class);
+        //$view = new Twig_Environment($loader);
+
         $response = "Rendered template";
         $template = $this->mock(Twig_Template::class);
         $template
             ->expects($this->once())
             ->method('render')
-            ->with(['errorMessage' => 'Book not found.'])
+            ->with(['errorMessage' => 'Book not found!'])
             ->will($this->returnValue($response));
         $this->di->get('Twig_Environment')
             ->expects($this->once())
@@ -111,7 +119,11 @@ class BookControllerTest extends ControllerTestCase
             ->method('borrow')
             ->with(new Book(), 9)
             ->will($this->throwException(new DbException()));
+        
         $this->di->set('BookModel', $bookModel);
+        
+        $this->expectException(DbException::class);
+
         $response = "Rendered template";
         $this->mockTemplate(
             'error.twig',

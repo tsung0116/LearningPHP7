@@ -21,6 +21,7 @@ class StubTest extends TestCase
         $stub->method('doSomething')
              ->will($this->throwException(new Exception));
 
+        $this->expectException('Exception');
         // $stub->doSomething() throws Exception
         $stub->doSomething();
     }

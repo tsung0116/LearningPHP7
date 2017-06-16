@@ -8,7 +8,7 @@ class NotFoundException extends Exception
 {
     public function __construct($message = null) 
     {
-        $message ?? 'Not Found!';
-        parent::__construct($message);
+        $this->message = $message ?? 'Not Found!';
+        parent::__construct($this->message);
     }
 }
