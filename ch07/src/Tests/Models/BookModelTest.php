@@ -19,24 +19,29 @@ class BookModelTest extends ModelTestCase
     }
 
     /**
-* @expectedException \Bookstore\Exceptions\DbException
-*/
-public function testBorrowBookNotFound() {
-$book = $this->buildBook(['id' => 123]);
-$this->model->borrow($book, 123);
-}
-/**
-* @expectedException \Bookstore\Exceptions\DbException
-*/
-public function testBorrowCustomerNotFound() {
-$book = $this->buildBook(['id' => 123]);
-$this->addBook(['id' => 123]);
-$this->model->borrow($book, 123);
-}
-public function testBorrow() {
-$book = $this->buildBook(['id' => 123, 'stock' => 12]);
-$this->addBook(['id' => 123, 'stock' => 12]);
-$this->addCustomer(['id' => 123]);
-$this->model->borrow($book, 123);
-}
+    * @expectedException \Bookstore\Exceptions\DbException
+    */
+    public function testBorrowBookNotFound() 
+    {
+        $book = $this->buildBook(['id' => 123]);
+        $this->model->borrow($book, 123);
+    }
+
+    /**
+    * @expectedException \Bookstore\Exceptions\DbException
+    */
+    public function testBorrowCustomerNotFound() 
+    {
+        $book = $this->buildBook(['id' => 123]);
+        $this->addBook(['id' => 123]);
+        $this->model->borrow($book, 123);
+    }
+
+    public function testBorrow() 
+    {
+        $book = $this->buildBook(['id' => 123, 'stock' => 12]);
+        $this->addBook(['id' => 123, 'stock' => 12]);
+        $this->addCustomer(['id' => 123]);
+        $this->model->borrow($book, 123);
+    }
 }
