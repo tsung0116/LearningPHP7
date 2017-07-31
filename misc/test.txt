@@ -1,0 +1,3 @@
+2017/07/04	10 tires 	20 oil	30 spark plugs	$60	Taipei
+2017/07/05	20 tires 	20 oil	30 spark plugs	$70	Taipei
+2017/07/06	30 tires 	20 oil	30 spark plugs	$80	Taipei

@@ -1,0 +1,3 @@
+<?php
+
+require 'funDef.php';
