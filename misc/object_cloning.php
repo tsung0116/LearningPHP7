@@ -3,19 +3,17 @@
 // When an object is cloned, PHP 5 will perform a shallow copy of all of the object's properties. 
 // Any properties that are references to other variables will remain references.
 
-// Since PHP 5, new returns a reference automatically.
-
 class SubObject
 {
     static $instances = 0;
     public $instance;
 
     public function __construct() {
-        $this->instance = ++self::$instances;
+        $this->instance = self::$instances++;
     }
 
     public function __clone() {
-        $this->instance = ++self::$instances;
+        $this->instance = self::$instances++;
     }
 }
 
